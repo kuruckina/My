@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -6,6 +7,12 @@ public class Hand : MonoBehaviour
     [SerializeField] private IKAnimation playerIK; 
     private Transform interactObject; 
     private Transform inHand;
+    // private BasketRb _basket;
+
+    private void Awake()
+    {
+        // _basket = new BasketRb();
+    }
 
     private void FixedUpdate()
     {
@@ -18,7 +25,12 @@ public class Hand : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-        if (other.CompareTag("item") || other.CompareTag("itemForTransfer"))
+        if (other.CompareTag("item") && inHand)
+        {
+            interactObject = other.transform; 
+            playerIK.StartInteraction(other.gameObject.transform.position);
+        }
+        if (other.CompareTag("itemForTransfer"))
         {
             interactObject = other.transform; 
             playerIK.StartInteraction(other.gameObject.transform.position);
@@ -27,7 +39,7 @@ public class Hand : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("item"))
+        if (collision.gameObject.CompareTag("item") && inHand)
         {
             TakeItemInPocket(collision.gameObject);
         }
@@ -57,6 +69,7 @@ public class Hand : MonoBehaviour
 
     private void TakeItemInHand(Transform item) 
     {
+        // _basket.IsKinematic(true);
         inHand = item; // запоминаем объект для взаимодействия
         inHand.parent = transform; // делаем руку родителем объекта
         inHand.localPosition = new Vector3(0.235f, -0.01f, 0.001f); 
@@ -74,6 +87,7 @@ public class Hand : MonoBehaviour
     {
         if (inHand != null) // если персонаж держит объект
         {
+            // _basket.IsKinematic(false);
             inHand.parent = null; // отвязываем объект     
             StartCoroutine(ReadyToTake()); 
         }

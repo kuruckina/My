@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class InputService : MonoBehaviour
 {
-    public bool IsMovementActive { get; private set; } = true;
+    public static bool IsMovementActive { get; private set; } = true;
     public Vector2 Axes => IsMovementActive ?
         new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) :
         Vector2.zero;

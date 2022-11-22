@@ -24,17 +24,15 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         _cachedTransform = transform;
+        _inputService = new InputService();
     }
 
     private void Update()
     {
-        Vector2 axes = new Vector2();
-        axes = _inputService.Axes;
-        // float horizontal = Input.GetAxis("Horizontal");
-        // float vertical = Input.GetAxis("Vertical");
+        Vector2 axes = _inputService.Axes;
         Vector3 moveVector = _cachedTransform.right * axes.x + _cachedTransform.forward * axes.y;
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift))
         {
             moveVector *= _runSpeed;
         }
@@ -44,62 +42,61 @@ public class PlayerMovement : MonoBehaviour
         }
 
         _controller.Move(moveVector * Time.deltaTime);
-        //анимации и движение------------------------------------
-
-        //ХОДЬБА    ======
+        _animation.SetSpeed(moveVector.magnitude);
+        
+      
         if (Input.GetKey(KeyCode.W))
         {
             _animation.SetWalkAnimation(true);
         }
-
+        
         if (Input.GetKeyUp(KeyCode.W))
         {
             _animation.SetWalkAnimation(false);
         }
-
+        
         if (Input.GetKey(KeyCode.S))
         {
             _animation.SetWalkBackAnimation(true);
         }
-
+        
         if (Input.GetKeyUp(KeyCode.S))
         {
             _animation.SetWalkBackAnimation(false);
         }
-
+        
         if (Input.GetKey(KeyCode.A))
         {
             _animation.SetWalkLeftAnimation(true);
         }
-
+        
         if (Input.GetKeyUp(KeyCode.A))
         {
             _animation.SetWalkLeftAnimation(false);
         }
-
+        
         if (Input.GetKey(KeyCode.D))
         {
             _animation.SetWalkRightAnimation(true);
         }
-
+        
         if (Input.GetKeyUp(KeyCode.D))
         {
             _animation.SetWalkRightAnimation(false);
         }
-
+        
         //БЕГ    ======
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             _animation.SetRunAnimation(true);
         }
-
+        
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             _animation.SetRunAnimation(false);
         }
 
-
-        //---------------------------------------------------------
+        
 
         bool isGrounded = Physics.CheckSphere(_checkGroundTransform.position, _checkGroundRadius, _checkGroundMask);
         Debug.LogError(isGrounded);
@@ -115,7 +112,6 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded && Input.GetButtonDown("Jump"))
         {
             _animation.SetJumpAnimation(true);
-            //yield return new WaitForSeconds(0.1f);
             _fallVector.y = Mathf.Sqrt(_jumpHeight * -2f * gravity);
         }
 

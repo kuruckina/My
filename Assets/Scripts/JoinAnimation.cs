@@ -1,34 +1,36 @@
+using System;
 using UnityEngine;
 
 public class JoinAnimation : MonoBehaviour
 {
-    public Animator doorAnimator; //ссылка на аниматор двери  
-    public Transform target; //ссылка на точку для начала анимации
-    private PlayerAnimation anim; //аниматор персонажа
+    public Animator doorAnimator;   
+    public Transform target;
+    private PlayerAnimation anim;
     private bool secondTurn = false;
     private InputService _inputService;
-    
+
+    private void Awake()
+    {
+        _inputService = new InputService();
+    }
 
     private void Start()
     {
-        anim = GetComponent<PlayerAnimation>(); //инициализируем аниматор
+        anim = GetComponent<PlayerAnimation>(); 
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (Vector3.Distance(transform.position, target.position) <= 0.5) //дошел
+            if (Vector3.Distance(transform.position, target.position) <= 0.5)
             {
                 transform.position = new Vector3(target.position.x, target.position.y, target.position.z);
                 _inputService.SetMovementActive(false);
-                doorAnimator.SetTrigger("open"); //запуск анимации двери
-                anim.PlayOpenAnimation(); //запуск анимации персонажа
+                doorAnimator.SetTrigger("open");
+                anim.PlayOpenAnimation();
+                // _inputService.SetMovementActive(true);
             }
-            // else
-            // {
-            //     _inputService.SetMovementActive(true);
-            // }
         }
     }
 }

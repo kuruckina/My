@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
-    //private static readonly int WalkSpeed = Animator.StringToHash("WalkSpeed");
-    //private static readonly int RunSpeed = Animator.StringToHash("RunSpeed");
     [SerializeField] private Animator _animator;
 
+    public void SetSpeed(float value)
+    {
+        _animator.SetFloat("speed", value);
+    }
     public void SetWalkAnimation(bool value)
     {
         _animator.SetBool("walk", value);
@@ -39,9 +41,5 @@ public class PlayerAnimation : MonoBehaviour
     {
         _animator.SetTrigger("open");
     }
-
-    private void Update()
-    {
-        //float number = Random.Range()
-    }
+    
 }

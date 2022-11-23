@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Hand : MonoBehaviour
 {
-    [SerializeField] private IKAnimation playerIK; 
-    private Transform interactObject; 
+    [SerializeField] private IKAnimation playerIK;
+    private Transform interactObject;
     private Transform inHand;
-    // private BasketRb _basket;
+    private BasketRb _basket;
 
     private void Awake()
     {
+        _basket = GetComponent<BasketRb>();
         // _basket = new BasketRb();
     }
 
@@ -23,16 +24,17 @@ public class Hand : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other) 
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("item") && inHand)
         {
-            interactObject = other.transform; 
+            interactObject = other.transform;
             playerIK.StartInteraction(other.gameObject.transform.position);
         }
+
         if (other.CompareTag("itemForTransfer"))
         {
-            interactObject = other.transform; 
+            interactObject = other.transform;
             playerIK.StartInteraction(other.gameObject.transform.position);
         }
     }
@@ -55,31 +57,31 @@ public class Hand : MonoBehaviour
     {
         if (interactObject != null && Vector3.Distance(transform.position, interactObject.position) > 2)
         {
-            interactObject = null; 
-            playerIK.StopInteraction(); 
+            interactObject = null;
+            playerIK.StopInteraction();
         }
     }
 
     private void TakeItemInPocket(GameObject item)
     {
-        playerIK.StopInteraction(); 
-        Destroy(interactObject.gameObject); 
+        playerIK.StopInteraction();
+        Destroy(interactObject.gameObject);
         MainManager.Inventory.AddItem(interactObject.gameObject);
     }
 
-    private void TakeItemInHand(Transform item) 
+    private void TakeItemInHand(Transform item)
     {
-        // _basket.IsKinematic(true);
+        _basket.Kinematic(true);
         inHand = item; // запоминаем объект для взаимодействия
         inHand.parent = transform; // делаем руку родителем объекта
-        inHand.localPosition = new Vector3(0.235f, -0.01f, 0.001f); 
-        inHand.localEulerAngles = new Vector3(0.058f, -0.4f, 87.6f); 
-        playerIK.StopInteraction(); 
+        inHand.localPosition = new Vector3(0.235f, -0.01f, 0.001f);
+        inHand.localEulerAngles = new Vector3(0.058f, -0.4f, 87.6f);
+        playerIK.StopInteraction();
     }
 
     private IEnumerator ReadyToTake()
     {
-        yield return null; 
+        yield return null;
         inHand = null;
     }
 
@@ -87,9 +89,9 @@ public class Hand : MonoBehaviour
     {
         if (inHand != null) // если персонаж держит объект
         {
-            // _basket.IsKinematic(false);
-            inHand.parent = null; // отвязываем объект     
-            StartCoroutine(ReadyToTake()); 
+            inHand.parent = null; // отвязываем объект 
+            _basket.Kinematic(false);
+            StartCoroutine(ReadyToTake());
         }
     }
 }

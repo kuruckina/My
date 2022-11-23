@@ -20,4 +20,5 @@ public class MainManager : MonoBehaviour
             inventory = value;
         }
     }
+    
 }

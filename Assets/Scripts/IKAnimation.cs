@@ -40,6 +40,7 @@ public class IKAnimation : MonoBehaviour
 
     public void StopInteraction()
     {
+        
         interact = false;
     }
 }

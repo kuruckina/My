@@ -6,6 +6,7 @@ TagManager:
   tags:
   - item
   - itemForTransfer
+  - starItem
   layers:
   - Default
   - TransparentFX

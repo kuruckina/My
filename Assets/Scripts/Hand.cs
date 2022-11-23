@@ -1,20 +1,14 @@
 using System;
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 
 public class Hand : MonoBehaviour
 {
     [SerializeField] private IKAnimation playerIK;
+    private StarUI _starUI;
     private Transform interactObject;
     private Transform inHand;
-    private BasketRb _basket;
-
-    private void Awake()
-    {
-        _basket = GetComponent<BasketRb>();
-        // _basket = new BasketRb();
-    }
-
     private void FixedUpdate()
     {
         CheckDistance(); // проверка дистанции с объектом
@@ -27,6 +21,12 @@ public class Hand : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("item") && inHand)
+        {
+            interactObject = other.transform;
+            playerIK.StartInteraction(other.gameObject.transform.position);
+        }
+
+        if (other.CompareTag("starItem"))
         {
             interactObject = other.transform;
             playerIK.StartInteraction(other.gameObject.transform.position);
@@ -46,6 +46,11 @@ public class Hand : MonoBehaviour
             TakeItemInPocket(collision.gameObject);
         }
 
+        if (collision.gameObject.CompareTag("starItem"))
+        {
+            TakeStar(collision.gameObject);
+        }
+
         if (collision.gameObject.CompareTag("itemForTransfer") && !inHand)
         {
             TakeItemInHand(collision.gameObject.transform);
@@ -61,17 +66,23 @@ public class Hand : MonoBehaviour
             playerIK.StopInteraction();
         }
     }
-
     private void TakeItemInPocket(GameObject item)
     {
         playerIK.StopInteraction();
         Destroy(interactObject.gameObject);
         MainManager.Inventory.AddItem(interactObject.gameObject);
     }
+    
+    private void TakeStar(GameObject item)
+    {
+        playerIK.StopInteraction();
+        _starUI.GetComponent<StarUI>().AddStar(item);
+        Destroy(interactObject.gameObject);
+    }
 
     private void TakeItemInHand(Transform item)
     {
-        _basket.Kinematic(true);
+        item.GetComponent<BasketRb>().Kinematic(true);
         inHand = item; // запоминаем объект для взаимодействия
         inHand.parent = transform; // делаем руку родителем объекта
         inHand.localPosition = new Vector3(0.235f, -0.01f, 0.001f);
@@ -89,8 +100,8 @@ public class Hand : MonoBehaviour
     {
         if (inHand != null) // если персонаж держит объект
         {
+            inHand.GetComponent<BasketRb>().Kinematic(false);
             inHand.parent = null; // отвязываем объект 
-            _basket.Kinematic(false);
             StartCoroutine(ReadyToTake());
         }
     }

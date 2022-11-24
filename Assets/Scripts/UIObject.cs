@@ -7,36 +7,30 @@ using UnityEngine;
 public class UIObject : MonoBehaviour
 {
     public GameObject objectInScene;
-    [SerializeField] private Image imagePlace; 
+    [SerializeField] private Image imagePlace;
     [SerializeField] private Sprite image;
-    [SerializeField] private Sprite red; 
+    [SerializeField] private Sprite red;
     [SerializeField] private Sprite green;
-    // [SerializeField] private TextMeshProUGUI _countLabel;   
-    
-    private Image borderPlace; 
+
+    private Image borderPlace;
     public bool State { get; set; } // автоматич свойство состояние подобран/не подобран объект
- 
+
     private void OnEnable()
     {
         borderPlace = gameObject.GetComponent<Image>();
     }
 
-    // public void SetCount(int value)
-    // {
-    //     _countLabel.text = value.ToString();
-    // }
- 
-    public void UpdateImage() 
+    public void UpdateImage()
     {
-        if (State) 
+        if (State)
         {
-            imagePlace.sprite = image; 
-            borderPlace.sprite = green; 
+            imagePlace.sprite = image;
+            borderPlace.sprite = green;
         }
-        else 
+        else
         {
-            imagePlace.sprite = image; 
-            borderPlace.sprite = red; 
+            imagePlace.sprite = image;
+            borderPlace.sprite = red;
         }
     }
 
@@ -44,5 +38,4 @@ public class UIObject : MonoBehaviour
     {
         return objectInScene;
     }
-    
 }

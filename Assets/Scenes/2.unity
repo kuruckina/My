@@ -1018,13 +1018,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 811588985}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 418f8c3e0bf745349bdc55943dd0461b, type: 3}
+  m_Script: {fileID: 11500000, guid: 87e186bed89e9c4488acfa6c298f89ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stars:
-  - {fileID: 36350720}
-  - {fileID: 1485982062}
-  _countLabel: {fileID: 996546853}
+  _starCountLabel: {fileID: 996546853}
 --- !u!1 &872231927
 GameObject:
   m_ObjectHideFlags: 0
@@ -1579,7 +1576,7 @@ GameObject:
   - component: {fileID: 1397633355}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

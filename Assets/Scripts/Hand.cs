@@ -6,9 +6,9 @@ using UnityEngine;
 public class Hand : MonoBehaviour
 {
     [SerializeField] private IKAnimation playerIK;
-    private StarUI _starUI;
     private Transform interactObject;
     private Transform inHand;
+
     private void FixedUpdate()
     {
         CheckDistance(); // проверка дистанции с объектом
@@ -26,13 +26,7 @@ public class Hand : MonoBehaviour
             playerIK.StartInteraction(other.gameObject.transform.position);
         }
 
-        if (other.CompareTag("starItem"))
-        {
-            interactObject = other.transform;
-            playerIK.StartInteraction(other.gameObject.transform.position);
-        }
-
-        if (other.CompareTag("itemForTransfer"))
+        if (other.CompareTag("itemForTransfer") || other.CompareTag("starItem"))
         {
             interactObject = other.transform;
             playerIK.StartInteraction(other.gameObject.transform.position);
@@ -66,17 +60,18 @@ public class Hand : MonoBehaviour
             playerIK.StopInteraction();
         }
     }
+
     private void TakeItemInPocket(GameObject item)
     {
         playerIK.StopInteraction();
         Destroy(interactObject.gameObject);
         MainManager.Inventory.AddItem(interactObject.gameObject);
     }
-    
+
     private void TakeStar(GameObject item)
     {
         playerIK.StopInteraction();
-        _starUI.GetComponent<StarUI>().AddStar(item);
+        Star._star++;
         Destroy(interactObject.gameObject);
     }
 
@@ -92,7 +87,8 @@ public class Hand : MonoBehaviour
 
     private IEnumerator ReadyToTake()
     {
-        yield return null;
+        yield return new WaitForSeconds(2f);
+        // yield return null;
         inHand = null;
     }
 

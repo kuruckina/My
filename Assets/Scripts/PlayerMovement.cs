@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
         _controller.Move(moveVector * Time.deltaTime);
         _animation.SetSpeed(moveVector.magnitude);
         
-      
+      //----ходьба 
         if (Input.GetKey(KeyCode.W))
         {
             _animation.SetWalkAnimation(true);
@@ -85,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
             _animation.SetWalkRightAnimation(false);
         }
         
-        //БЕГ    ======
+        //----бег 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             _animation.SetRunAnimation(true);

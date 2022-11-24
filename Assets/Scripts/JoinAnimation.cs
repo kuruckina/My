@@ -6,7 +6,7 @@ public class JoinAnimation : MonoBehaviour
     public Animator doorAnimator;   
     public Transform target;
     private PlayerAnimation anim;
-    private bool secondTurn = false;
+    // private bool secondTurn = false;
     private InputService _inputService;
 
     private void Awake()

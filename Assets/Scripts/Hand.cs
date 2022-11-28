@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using DefaultNamespace;
 using UnityEditor;
 using UnityEngine;
 
@@ -68,8 +69,8 @@ public class Hand : MonoBehaviour
     private void TakeItemInPocket(GameObject item)
     {
         playerIK.StopInteraction();
-        Destroy(interactObject.gameObject);
-        MainManager.Inventory.AddItem(interactObject.gameObject);
+        Destroy(item);
+        MainManager.Inventory.AddItem(item);
         MainManager.Messenger.WriteMessage("Вы подобрали " + item.name);
     }
 
@@ -88,7 +89,7 @@ public class Hand : MonoBehaviour
         inHand.parent = transform; // делаем руку родителем объекта
         inHand.localPosition = new Vector3(0.235f, -0.01f, 0.001f);
         inHand.localEulerAngles = new Vector3(0.058f, -0.4f, 87.6f);
-        playerIK.StopInteraction();
+        this.StartFrameTimer(5, playerIK.StopInteraction);
         MainManager.Messenger.WriteMessage("Вы подобрали " + item.name);
     }
 

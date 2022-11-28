@@ -43,60 +43,59 @@ public class PlayerMovement : MonoBehaviour
 
         _controller.Move(moveVector * Time.deltaTime);
         _animation.SetSpeed(moveVector.magnitude);
-        
-      //----ходьба 
+
+        //----ходьба 
         if (Input.GetKey(KeyCode.W))
         {
             _animation.SetWalkAnimation(true);
         }
-        
+
         if (Input.GetKeyUp(KeyCode.W))
         {
             _animation.SetWalkAnimation(false);
         }
-        
+
         if (Input.GetKey(KeyCode.S))
         {
             _animation.SetWalkBackAnimation(true);
         }
-        
+
         if (Input.GetKeyUp(KeyCode.S))
         {
             _animation.SetWalkBackAnimation(false);
         }
-        
+
         if (Input.GetKey(KeyCode.A))
         {
             _animation.SetWalkLeftAnimation(true);
         }
-        
+
         if (Input.GetKeyUp(KeyCode.A))
         {
             _animation.SetWalkLeftAnimation(false);
         }
-        
+
         if (Input.GetKey(KeyCode.D))
         {
             _animation.SetWalkRightAnimation(true);
         }
-        
+
         if (Input.GetKeyUp(KeyCode.D))
         {
             _animation.SetWalkRightAnimation(false);
         }
-        
+
         //----бег 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             _animation.SetRunAnimation(true);
         }
-        
+
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             _animation.SetRunAnimation(false);
         }
 
-        
 
         bool isGrounded = Physics.CheckSphere(_checkGroundTransform.position, _checkGroundRadius, _checkGroundMask);
         Debug.LogError(isGrounded);

@@ -7,8 +7,8 @@ public class CheckAnimationBox : MonoBehaviour
     {
         _joinAnimation.AnimationEnded();
     }
-    // public void SpawnPrefab()
-    // {
-    //     _joinAnimation.SpawnPrefab();
-    // }
+    public void SpawnPrefab()
+    {
+        _joinAnimation.SpawnPrefab();
+    }
 }

@@ -9,13 +9,17 @@ public class Hand : MonoBehaviour
     private Transform interactObject;
     private Transform inHand;
 
-    private void FixedUpdate()
+    private void Update()
     {
-        CheckDistance(); // проверка дистанции с объектом
         if (Input.GetKeyDown(KeyCode.Z))
         {
             ThroughItem();
         }
+    }
+
+    private void FixedUpdate()
+    {
+        CheckDistance(); // проверка дистанции с объектом
     }
 
     private void OnTriggerEnter(Collider other)
@@ -66,6 +70,7 @@ public class Hand : MonoBehaviour
         playerIK.StopInteraction();
         Destroy(interactObject.gameObject);
         MainManager.Inventory.AddItem(interactObject.gameObject);
+        MainManager.Messenger.WriteMessage("Вы подобрали " + item.name);
     }
 
     private void TakeStar(GameObject item)
@@ -73,6 +78,7 @@ public class Hand : MonoBehaviour
         playerIK.StopInteraction();
         Star._star++;
         Destroy(interactObject.gameObject);
+        MainManager.Messenger.WriteMessage("Вы подобрали " + item.name);
     }
 
     private void TakeItemInHand(Transform item)
@@ -83,6 +89,7 @@ public class Hand : MonoBehaviour
         inHand.localPosition = new Vector3(0.235f, -0.01f, 0.001f);
         inHand.localEulerAngles = new Vector3(0.058f, -0.4f, 87.6f);
         playerIK.StopInteraction();
+        MainManager.Messenger.WriteMessage("Вы подобрали " + item.name);
     }
 
     private IEnumerator ReadyToTake()

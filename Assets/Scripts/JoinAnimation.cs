@@ -38,11 +38,11 @@ public class JoinAnimation : MonoBehaviour
     public void AnimationEnded()
     {
         _inputService.SetMovementActive(true);
+    //     sphereAnimator.SetTrigger("spawn");
+    }
+    
+    public void SpawnPrefab()
+    {
         sphereAnimator.SetTrigger("spawn");
     }
-    //
-    // public void SpawnPrefab()
-    // {
-    //     sphereAnimator.SetTrigger("spawn");
-    // }
 }

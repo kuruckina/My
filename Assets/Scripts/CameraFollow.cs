@@ -4,6 +4,7 @@ public class CameraFollow : MonoBehaviour
 {
     [SerializeField] [Range(1f, 5f)] private float _angularSpeed = 1f;
     [SerializeField] private Transform _target;
+    [SerializeField] private GameObject _player;
     private float _angleY;
     private float MouseX;
     private float MouseY;
@@ -21,5 +22,6 @@ public class CameraFollow : MonoBehaviour
 
         transform.position = _target.transform.position;
         transform.rotation = Quaternion.Euler(MouseY, MouseX, 0);
+        _player.transform.rotation = Quaternion.Euler(MouseY, MouseX, 0);
     }
 }

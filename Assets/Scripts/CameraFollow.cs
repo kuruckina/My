@@ -22,6 +22,6 @@ public class CameraFollow : MonoBehaviour
 
         transform.position = _target.transform.position;
         transform.rotation = Quaternion.Euler(MouseY, MouseX, 0);
-        _player.transform.rotation = Quaternion.Euler(MouseY, MouseX, 0);
+        _player.transform.rotation = Quaternion.Euler(0, MouseX, 0);
     }
 }

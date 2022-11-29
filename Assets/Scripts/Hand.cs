@@ -31,7 +31,12 @@ public class Hand : MonoBehaviour
             playerIK.StartInteraction(other.gameObject.transform.position);
         }
 
-        if (other.CompareTag("itemForTransfer") || other.CompareTag("starItem"))
+        if (other.CompareTag("itemForTransfer"))
+        {
+            interactObject = other.transform;
+            playerIK.StartInteraction(other.gameObject.transform.position);
+        }
+        if (other.CompareTag("starItem"))
         {
             interactObject = other.transform;
             playerIK.StartInteraction(other.gameObject.transform.position);
@@ -78,8 +83,8 @@ public class Hand : MonoBehaviour
     {
         playerIK.StopInteraction();
         Star._star++;
-        Destroy(interactObject.gameObject);
-        MainManager.Messenger.WriteMessage("Вы подобрали " + item.name);
+        Destroy(item);
+        // MainManager.Messenger.WriteMessage("Вы подобрали " + item.name);
     }
 
     private void TakeItemInHand(Transform item)

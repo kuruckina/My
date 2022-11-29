@@ -6,10 +6,9 @@ public class Princess : MonoBehaviour
     Animator animbot;
     // public GameObject dialogue;
 
-   [SerializeField] private GameObject player;
-
+    [SerializeField] private GameObject player;
     float weight = 0f;
-    
+
     enum states
     {
         waiting, // ожидает
@@ -21,8 +20,6 @@ public class Princess : MonoBehaviour
     void Start()
     {
         animbot = GetComponent<Animator>(); // берем компонент аниматора
-        //botagent = GetComponent<NavMeshAgent>(); // берем компонент агента        
-        // player = FindObjectOfType<PlayerMovement>().gameObject;
         StartCoroutine(Wait()); // запускаем корутину ожидания
     }
 
@@ -35,7 +32,7 @@ public class Princess : MonoBehaviour
                 if (PlayerNear()) PrepareToDialog();
                 break;
             }
-            
+
             case states.dialog:
             {
                 if (!PlayerNear()) StartCoroutine(Wait());
@@ -56,7 +53,7 @@ public class Princess : MonoBehaviour
 
         // dialogue.gameObject.SetActive(true);
 
-        state = states.dialog; // устанавливаем состояние подхода к объекту в который попали лучом        
+        state = states.dialog;
     }
 
     void OnAnimatorIK()
@@ -64,9 +61,8 @@ public class Princess : MonoBehaviour
         if (state == states.dialog)
         {
             if (weight < 1) weight += 0.1f;
-            animbot.SetLookAtWeight(weight); // указываем силу воздействия на голову
+            animbot.SetLookAtWeight(weight);
             animbot.SetLookAtPosition(player.transform.TransformPoint(Vector3.up * 1.5f));
-            // указываем куда смотреть
         }
         else if (weight > 0)
         {
@@ -78,10 +74,7 @@ public class Princess : MonoBehaviour
 
     IEnumerator Wait() // корутина ожидания
     {
-
         state = states.waiting; // указываем, что бот перешел в режим ожидания
-
         yield return new WaitForSeconds(10f); // ждем 10 секунд
-
     }
 }

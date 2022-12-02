@@ -1,14 +1,12 @@
 using UnityEngine;
 
-public class DeathZone : MonoBehaviour
+public class Death : MonoBehaviour
 {
-    [SerializeField] private GameObject _deathPanel;
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            _deathPanel.SetActive(true);
+            MainManager.game.LoseGame();
         }
     }
 }

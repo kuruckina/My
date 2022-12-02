@@ -5,9 +5,12 @@ public class InventoryManager : MonoBehaviour
 {
     [SerializeField] private GameObject Inventory;
     [SerializeField] private UIObject[] objects;
+    public static int item;
+    public static int allObj;
     private void Start()
     {
         Inventory.SetActive(false);
+        allObj = objects.Length;
     }
 
     private void Update()
@@ -30,6 +33,7 @@ public class InventoryManager : MonoBehaviour
             if (objectInScene.Equals(obj.myObject()))
             {
                 obj.State = true;
+                item++;
                 break;
             }
         }

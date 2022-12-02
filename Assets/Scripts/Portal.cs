@@ -5,14 +5,10 @@ using UnityEngine.SceneManagement;
 public class Portal : MonoBehaviour
 {
     [SerializeField] private int index;
-    // private void Start()
-    // {
-    //     Scene index = SceneManager.GetActiveScene();
-    // }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && InventoryManager.item == InventoryManager.allObj)
         {
             if (index == 1)
             {
@@ -23,6 +19,10 @@ public class Portal : MonoBehaviour
                 SceneManager.LoadSceneAsync(1);
             }
            
+        }
+        else
+        {
+            MainManager.Messenger.WriteMessage("Соберите все кристаллы");
         }
     }
 }

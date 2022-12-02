@@ -1,11 +1,12 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Star : MonoBehaviour
 {
     public TextMeshProUGUI _starCountLabel;
     public static int _star;
+    public static int _allStars = 3;
+
     void Update()
     {
         _starCountLabel.text = _star.ToString();

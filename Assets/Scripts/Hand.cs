@@ -84,6 +84,10 @@ public class Hand : MonoBehaviour
         playerIK.StopInteraction();
         Star._star++;
         Destroy(item);
+        if (Star._star == Star._allStars)
+        {
+            MainManager.game.WinGame();
+        }
         // MainManager.Messenger.WriteMessage("Вы подобрали " + item.name);
     }
 

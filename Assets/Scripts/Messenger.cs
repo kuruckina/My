@@ -20,7 +20,7 @@ public class Messenger : MonoBehaviour
     {
         // проверка и остановка корутины, если она уже была запущена
         if (RunMessage != null) StopCoroutine(RunMessage);
-        Debug.Log(message);
+        // Debug.Log(message);
         this.message.text = ""; // очистка строки
         // запуск корутины с выводом нового сообщения
         RunMessage = StartCoroutine(Message(text));

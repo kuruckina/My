@@ -6,7 +6,7 @@ using UnityEngine;
 public class Timer : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI text; 
-    private DateTime timer = new DateTime(1, 1, 1, 0, 1, 00);
+    private DateTime timer = new DateTime(1, 1, 1, 0, 0, 10);
 
     private void Start()
     {

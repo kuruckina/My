@@ -41,5 +41,13 @@ public class PlayerAnimation : MonoBehaviour
     {
         _animator.SetTrigger("open");
     }
+    public void SadAnimation()
+    {
+        _animator.SetBool("sad", true);
+    }
+    public void DanceAnimation()
+    {
+        _animator.SetBool("dance", true);
+    }
     
 }

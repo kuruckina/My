@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
         if (end == null)
         {
             _win = true;
+            Debug.Log("WIN");
+            InventoryManager.item = 0;
             end = StartCoroutine(BeforeExit());
         }
     }
@@ -21,6 +23,7 @@ public class GameManager : MonoBehaviour
         if (end == null)
         {
             Debug.Log("Lose");
+            InventoryManager.item = 0;
             end = StartCoroutine(BeforeExit());
         }
     }

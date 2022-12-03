@@ -22,12 +22,12 @@ public class WinOrLose : MonoBehaviour
 
     private void Win()
     {
-        _animation.SetJumpAnimation(true);
+        _animation.DanceAnimation();
         _winPanel.SetActive(true);
     }
     private void Lose()
     {
-        _animation.SetWalkAnimation(true);
+        _animation.SadAnimation();
         _losePanel.SetActive(true);
     }
 }

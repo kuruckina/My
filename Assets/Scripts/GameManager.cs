@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     {
         if (end == null)
         {
+            _win = false;
             Debug.Log("Lose");
             InventoryManager.item = 0;
             end = StartCoroutine(BeforeExit());

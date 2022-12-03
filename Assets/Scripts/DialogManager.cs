@@ -14,7 +14,7 @@ public class DialogManager : MonoBehaviour
     {
         messege[0] = "Привет, Лиза";
         messege[1] = "Чтобы получить волшебную палочку, собери все кристаллы и иди к порталу";
-        messege[2] = "Найти только корзину, чтобы ничего не рассыпать";
+        messege[2] = "Наиди только корзину, чтобы ничего не рассыпать";
         dialogPanel.SetActive(false);
     }
 

@@ -8624,7 +8624,7 @@ MonoBehaviour:
   messege:
   - 
   - 
-  startDialog: 0
+  - 
 --- !u!1 &1931931935
 GameObject:
   m_ObjectHideFlags: 0

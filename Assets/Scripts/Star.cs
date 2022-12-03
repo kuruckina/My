@@ -5,7 +5,7 @@ public class Star : MonoBehaviour
 {
     public TextMeshProUGUI _starCountLabel;
     public static int _star;
-    public static int _allStars = 3;
+    public static int _allStars = 1;
 
     void Update()
     {

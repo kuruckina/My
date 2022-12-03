@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class JoinAnimation : MonoBehaviour
@@ -22,7 +21,7 @@ public class JoinAnimation : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && !boxIsOpen)
+        if (Input.GetKeyDown(KeyCode.F) && !boxIsOpen && !Hand.inHand)
         {
             if (Vector3.Distance(transform.position, target.position) <= 0.5)
             {
@@ -35,11 +34,18 @@ public class JoinAnimation : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+        }
+    }
+
     public void AnimationEnded()
     {
         _inputService.SetMovementActive(true);
     }
-    
+
     public void SpawnPrefab()
     {
         sphereAnimator.SetTrigger("spawn");

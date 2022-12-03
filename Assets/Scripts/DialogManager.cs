@@ -6,14 +6,16 @@ public class DialogManager : MonoBehaviour
 {
     public GameObject dialogPanel;
     public TextMeshProUGUI dialog;
+    public TextMeshProUGUI help;
     public string[] messege;
     private bool startDialog = false;
     private int i = 0;
 
     private void Start()
     {
+        help.text = "[R]";
         messege[0] = "Привет, Лиза";
-        messege[1] = "Чтобы получить волшебную палочку, собери все кристаллы и иди к порталу";
+        messege[1] = "Чтобы получить волшебную палочку, собери все кристаллы и жемчуг. Потом иди к порталу";
         messege[2] = "Наиди только корзину, чтобы ничего не рассыпать";
         dialogPanel.SetActive(false);
     }
@@ -29,7 +31,6 @@ public class DialogManager : MonoBehaviour
                 {
                     dialog.text = messege[i];
                 }
-                // dialog.text = messege[1];
             }
         }
     }
@@ -48,6 +49,7 @@ public class DialogManager : MonoBehaviour
     {
         dialogPanel.SetActive(false);
         startDialog = false;
+        help.text = "";
         i = 0;
     }
 }

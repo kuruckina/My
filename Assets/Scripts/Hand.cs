@@ -8,6 +8,8 @@ public class Hand : MonoBehaviour
     private Transform interactObject;
     // private Transform inHand;
     public static Transform inHand;
+    public AudioSource _starSource;
+    public AudioSource _cristallSource;
 
     private void Update()
     {
@@ -67,7 +69,7 @@ public class Hand : MonoBehaviour
     // метод для проверки дистанции, чтобы была возможность прекратить взаимодействие с объектом при отдалении
     private void CheckDistance()
     {
-        if (interactObject != null && Vector3.Distance(transform.position, interactObject.position) > 5)
+        if (interactObject != null && Vector3.Distance(transform.position, interactObject.position) > 4)
         {
             Debug.Log(interactObject);
             interactObject = null;
@@ -80,13 +82,15 @@ public class Hand : MonoBehaviour
         playerIK.StopInteraction();
         Destroy(item);
         MainManager.Inventory.AddItem(item);
-
+        
         if (item.name == "Sphere")
         {
+            _starSource.Play();
             MainManager.Messenger.WriteMessage("Вы подобрали жемчуг");
         }
         else
         {
+            _cristallSource.Play();
             MainManager.Messenger.WriteMessage("Вы подобрали кристалл");
         }
     }
@@ -96,6 +100,7 @@ public class Hand : MonoBehaviour
         playerIK.StopInteraction();
         Star._star++;
         Destroy(item);
+        _starSource.Play();
         if (Star._star == Star._allStars)
         {
             MainManager.game.WinGame();

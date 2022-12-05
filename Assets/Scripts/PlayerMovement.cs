@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Jump")]
     [SerializeField] private float _jumpHeight = 2f;
 
+    public AudioSource _source;
+
     private Transform _cachedTransform;
     private Vector3 _fallVector;
     private InputService _inputService;
@@ -43,6 +45,14 @@ public class PlayerMovement : MonoBehaviour
 
         _controller.Move(moveVector * Time.deltaTime);
         _animation.SetSpeed(moveVector.magnitude);
+        if (moveVector.magnitude > 0 && !_source.isPlaying)
+        {
+            _source.Play();
+        }
+        else if(moveVector.magnitude == 0 && _source.isPlaying)
+        {
+            _source.Stop();
+        }
 
         //----ходьба 
         if (Input.GetKey(KeyCode.W))

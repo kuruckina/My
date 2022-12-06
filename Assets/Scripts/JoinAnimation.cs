@@ -23,7 +23,7 @@ public class JoinAnimation : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F) && !boxIsOpen && !Hand.inHand)
         {
-            if (Vector3.Distance(transform.position, target.position) <= 0.5)
+            if (Vector3.Distance(transform.position, target.position) <= 0.7)
             {
                 transform.position = new Vector3(target.position.x, target.position.y, target.position.z);
                 _inputService.SetMovementActive(false);
@@ -33,13 +33,6 @@ public class JoinAnimation : MonoBehaviour
             }
         }
     }
-
-    // private void OnTriggerEnter(Collider other)
-    // {
-    //     if (other.CompareTag("Player"))
-    //     {
-    //     }
-    // }
 
     public void AnimationEnded()
     {

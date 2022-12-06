@@ -65,7 +65,7 @@ public class PanelMove : MonoBehaviour, IPointerClickHandler,
     //по клику на панель, открываем новую сцену
     public void OnPointerClick(PointerEventData eventData)
     {
-        //    MainManager.sceneChanger.OpenNewScene(0);
+        InventoryManager.item = 0;
         MainManager.sceneChanger.OpenNewScene(0);
     }
 

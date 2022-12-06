@@ -29,21 +29,18 @@ public class Hand : MonoBehaviour
         if (other.CompareTag("item") && inHand)
         {
             interactObject = other.transform;
-            Debug.Log(interactObject);
             playerIK.StartInteraction(other.gameObject.transform.position);
         }
 
         if (other.CompareTag("itemForTransfer"))
         {
             interactObject = other.transform;
-            Debug.Log(interactObject);
             playerIK.StartInteraction(other.gameObject.transform.position);
         }
 
         if (other.CompareTag("starItem"))
         {
             interactObject = other.transform;
-            Debug.Log(interactObject);
             playerIK.StartInteraction(other.gameObject.transform.position);
         }
     }

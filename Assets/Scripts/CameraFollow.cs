@@ -26,7 +26,6 @@ public class CameraFollow : MonoBehaviour
 
     private void Update()
     {
-        Vector2 axes = _inputService.Axes2;
         // MouseX += Input.GetAxis("Mouse X");
         // MouseY -= Input.GetAxis("Mouse Y");
         MouseX += _inputService.Axes2.x;

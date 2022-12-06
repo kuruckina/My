@@ -265,7 +265,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Menu
+  m_text: "\u041C\u0435\u043D\u044E"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6b35fdeb48dabca4ea870d9a0aa707d7, type: 2}
   m_sharedMaterial: {fileID: 5064120290806056286, guid: 6b35fdeb48dabca4ea870d9a0aa707d7, type: 2}

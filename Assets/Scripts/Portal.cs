@@ -10,19 +10,12 @@ public class Portal : MonoBehaviour
     {
         if (other.CompareTag("Player") && InventoryManager.item == InventoryManager.allObj)
         {
-            if (index == 1)
-            {
-                SceneManager.LoadSceneAsync(2);
-            }
-            if (index == 2)
-            {
-                SceneManager.LoadSceneAsync(1);
-            }
-           
+            // MainManager.Messenger.WriteMessage("Вы все собрали");
+            SceneManager.LoadSceneAsync(2);
         }
-        else
+        else if(InventoryManager.item != InventoryManager.allObj)
         {
-            MainManager.Messenger.WriteMessage("Соберите все кристаллы");
+            MainManager.Messenger.WriteMessage("Соберите все предметы");
         }
     }
 }

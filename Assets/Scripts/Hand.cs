@@ -69,7 +69,7 @@ public class Hand : MonoBehaviour
     // метод для проверки дистанции, чтобы была возможность прекратить взаимодействие с объектом при отдалении
     private void CheckDistance()
     {
-        if (interactObject != null && Vector3.Distance(transform.position, interactObject.position) > 4)
+        if (interactObject != null && Vector3.Distance(transform.position, interactObject.position) > 4f)
         {
             Debug.Log(interactObject);
             interactObject = null;

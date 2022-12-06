@@ -13,7 +13,7 @@ public class DialogManager : MonoBehaviour
 
     private void Start()
     {
-        help.text = "[R]";
+        // help.text = "[R]";
         messege[0] = "Привет, Лиза";
         messege[1] = "Чтобы получить волшебную палочку, собери все кристаллы и жемчуг. Потом иди к порталу";
         messege[2] = "Наиди только корзину, чтобы ничего не рассыпать";
@@ -30,6 +30,7 @@ public class DialogManager : MonoBehaviour
                 if (i < 3)
                 {
                     dialog.text = messege[i];
+                    help.text = "[R]";
                 }
             }
         }
@@ -42,6 +43,7 @@ public class DialogManager : MonoBehaviour
             dialogPanel.SetActive(true);
             startDialog = true;
             dialog.text = messege[0];
+            help.text = "[R]";
         }
     }
 

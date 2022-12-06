@@ -7,7 +7,7 @@ public class Timer : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI text;
     public AudioSource _source;
-    private DateTime timer = new DateTime(1, 1, 1, 0, 0, 10);
+    private DateTime timer = new DateTime(1, 1, 1, 0, 1, 00);
 
     private void Start()
     {
@@ -29,7 +29,7 @@ public class Timer : MonoBehaviour
             if (timer.Second == 0 && timer.Minute == 0)
             {
                 
-                text.text = "0 : 0";
+                text.text = "0:0";
                 MainManager.game.LoseGame(); 
                 break; 
             }

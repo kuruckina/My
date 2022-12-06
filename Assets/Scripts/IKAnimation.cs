@@ -24,7 +24,7 @@ public class IKAnimation : MonoBehaviour
         }
         else if (weight > 0)
         {
-            weight -= 0.02f;
+            weight -= 0.2f;
             anim.SetIKPositionWeight(AvatarIKGoal.RightHand, weight);
             anim.SetIKPosition(AvatarIKGoal.RightHand, positionForIК);
             anim.SetLookAtWeight(weight);

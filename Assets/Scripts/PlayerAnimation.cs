@@ -45,9 +45,9 @@ public class PlayerAnimation : MonoBehaviour
     {
         _animator.SetBool("sad", true);
     }
-    public void DanceAnimation()
+    public void HappyAnimation()
     {
-        _animator.SetBool("dance", true);
+        _animator.SetBool("happy", true);
     }
     
 }

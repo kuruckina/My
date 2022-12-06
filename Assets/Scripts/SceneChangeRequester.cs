@@ -8,4 +8,9 @@ public class SceneChangeRequester : MonoBehaviour
     {
         MainManager.sceneChanger.OpenNewScene(sceneIndex);
     }
+
+    public void Exit()
+    {
+        Application.Quit();
+    }
 }

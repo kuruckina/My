@@ -6,6 +6,7 @@ public class SceneChangeRequester : MonoBehaviour
 
     public void RequestSceneChange()
     {
+        InventoryManager.item = 0;
         MainManager.sceneChanger.OpenNewScene(sceneIndex);
     }
 

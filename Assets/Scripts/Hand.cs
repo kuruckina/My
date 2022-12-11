@@ -32,10 +32,20 @@ public class Hand : MonoBehaviour
             playerIK.StartInteraction(other.gameObject.transform.position);
         }
 
+        // if (other.CompareTag("itemForTransfer"))
+        // {
+        //     interactObject = other.transform;
+        //     playerIK.StartInteraction(other.gameObject.transform.position);
+        // }
         if (other.CompareTag("itemForTransfer"))
         {
             interactObject = other.transform;
             playerIK.StartInteraction(other.gameObject.transform.position);
+
+            if (!inHand)
+            {
+                TakeItemInHand(other.gameObject.transform);
+            }
         }
 
         if (other.CompareTag("starItem"))
@@ -57,10 +67,10 @@ public class Hand : MonoBehaviour
             TakeStar(collision.gameObject);
         }
 
-        if (collision.gameObject.CompareTag("itemForTransfer") && !inHand)
-        {
-            TakeItemInHand(collision.gameObject.transform);
-        }
+        // if (collision.gameObject.CompareTag("itemForTransfer") && !inHand)
+        // {
+        //     TakeItemInHand(collision.gameObject.transform);
+        // }
     }
 
     // метод для проверки дистанции, чтобы была возможность прекратить взаимодействие с объектом при отдалении

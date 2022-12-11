@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    [SerializeField] [Range(1f, 5f)] private float _angularSpeed = 1f;
+    // [SerializeField] [Range(1f, 5f)] private float _angularSpeed = 1f;
     [SerializeField] private Transform _target;
     [SerializeField] private GameObject _player;
-    private float _angleY;
+    // private float _angleY;
     private float MouseX;
     private float MouseY;
     private InputService _inputService;

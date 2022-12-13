@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("WIN");
             InventoryManager.item = 0;
             end = StartCoroutine(BeforeExit());
+            // Star._star = 0;
         }
     }
 
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("Lose");
             InventoryManager.item = 0;
             end = StartCoroutine(BeforeExit());
+       
         }
     }
 
@@ -38,5 +40,6 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(4f);
         SceneManager.LoadSceneAsync(3);
+        Star._star = 0;
     }
 }
